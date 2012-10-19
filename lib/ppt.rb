@@ -8,7 +8,6 @@ class PiedraPapelTijeras
         else
            @tiradas = [:piedra, :papel, :tijeras]
         end
-        
         if ganadoras.kind_of? Hash
             @ganadoras = ganadoras    # Hash de quien gana a quién
         else
@@ -18,7 +17,6 @@ class PiedraPapelTijeras
                   :tijeras => :papel
                  } 
         end
-        
         if resultados.kind_of? Array
             @resultados = resultados  # Array con :gane, :perdi o :empate
         else
@@ -39,7 +37,6 @@ class PiedraPapelTijeras
     end
 
     def jugar
-    
         obtener_maquina
         # VERBOSE
         machine = `hostname`.strip
