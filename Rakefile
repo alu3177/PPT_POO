@@ -5,6 +5,8 @@ task :jugar do
   sh "ruby -Ilib  bin/juegaPPT.rb piedra"
   sh "ruby -Ilib  bin/juegaPPT.rb papel"
   sh "ruby -Ilib  bin/juegaPPT.rb tijeras"
+  sh "ruby -Ilib  bin/juegaPPT.rb lagarto"
+  sh "ruby -Ilib  bin/juegaPPT.rb spock"
 end
 
 desc "Ejecuta los el conjunto de test unitarios"

@@ -1,4 +1,6 @@
+require 'colorize'
 require "ppt.rb"
+
 
 tiradas = [:piedra, :papel, :tijeras, :lagarto, :spock]
 ganadoras = {
@@ -19,18 +21,20 @@ end
 
 ppt = PiedraPapelTijeras.new(tiradas, ganadoras, resultados, jugada, "")
 
+
+result = ppt.jugar
+
 machine = `hostname`.strip
 puts "        ## JUGADOR ##                         ## #{machine} ##"
 puts "           #{ppt.humano.to_s.capitalize}               VS               #{ppt.maquina.to_s.capitalize}"
 puts ""
 
-result = ppt.jugar
 case result
   when :gane
-      puts "                        Bien, has GANADO!"
+      puts "                        Bien, has GANADO!".green
   when :perdi
-      puts "                        Lastima, has PERDIDO"
+      puts "                        Lastima, has PERDIDO".red
   when :empate
-      puts "                        Casi, has EMPATADO, intentalo de nuevo"
+      puts "                  Casi, has EMPATADO, intentalo de nuevo".yellow
 end
     
