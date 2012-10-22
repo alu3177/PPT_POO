@@ -16,5 +16,11 @@ end
 
 desc "Ejecuta los el conjunto de test unitarios"
 task :test do
-  #sh "ruby -Ilib test/tc_Circle.rb"
+ 	sh "ruby -Ilib test/tc_ppt.rb"
+end
+
+desc "Ejecuta un test en concreto"
+task :t, :test_name do |t, args|
+   test_name = args[:test_name] || 'test_play'
+   sh "ruby -Ilib test/tc_ppt.rb --name #{test_name}"
 end
