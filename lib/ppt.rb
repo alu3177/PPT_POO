@@ -2,7 +2,7 @@ class PiedraPapelTijeras
     attr_accessor :tiradas, :ganadoras, :resultados
     attr_reader :humano, :maquina, :resultado    
     
-    def initialize(tiradas, ganadoras, resultados, humano, maquina, verbose=false)
+    def initialize(tiradas, ganadoras, resultados, humano, maquina)
         if tiradas.kind_of? Array
            @tiradas = tiradas        # Array con tiradas posibles
         else
@@ -24,7 +24,6 @@ class PiedraPapelTijeras
         end
         @humano = humano
         @maquina = maquina
-        @verbose = verbose
     end
 
     def obtener_humano(cadena)
@@ -38,13 +37,6 @@ class PiedraPapelTijeras
 
     def jugar
         obtener_maquina
-        # VERBOSE
-        machine = `hostname`.strip
-        if (@verbose == true)
-            puts "        ## JUGADOR ##                         ## #{machine} ##"
-            puts "           #{@humano.to_s.capitalize}               VS               #{@maquina.to_s.capitalize}"
-            puts ""
-        end
 
         if @ganadoras[@maquina].kind_of? Array
             if (@humano == @maquina)

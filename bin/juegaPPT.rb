@@ -10,17 +10,27 @@ ganadoras = {
      } 
 resultados = [:gane, :perdi, :empate]
 
-if (ARGV.count >= 1)
+if (ARGV.count == 1)
 	jugada = ARGV[0].to_sym
-    if ARGV[1] == "-v"
-        $verbose = true
-    else
-        $verbose = false
-    end
 else
-	raise ArgumentError, "Debe proporcionar una jugada: piedra, papel o tijeras"
+	raise ArgumentError, "Debe proporcionar una jugada valida: " + tiradas.to_s
     puts ARG[0]
 end
 
-ppt = PiedraPapelTijeras.new(tiradas, ganadoras, nil, jugada, "", $verbose)
-puts ppt.jugar
+ppt = PiedraPapelTijeras.new(tiradas, ganadoras, resultados, jugada, "")
+
+machine = `hostname`.strip
+puts "        ## JUGADOR ##                         ## #{machine} ##"
+puts "           #{ppt.humano.to_s.capitalize}               VS               #{ppt.maquina.to_s.capitalize}"
+puts ""
+
+result = ppt.jugar
+case result
+  when :gane
+      puts "                        Bien, has GANADO!"
+  when :perdi
+      puts "                        Lastima, has PERDIDO"
+  when :empate
+      puts "                        Casi, has EMPATADO, intentalo de nuevo"
+end
+    

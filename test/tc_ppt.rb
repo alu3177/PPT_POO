@@ -4,7 +4,7 @@ require "test/unit"
 class TestPiedraPapelTijeras < Test::Unit::TestCase
 
    def setup
-      @ppt_obj = PiedraPapelTijeras.new(nil, nil, nil, "tijeras", "papel", "gane")
+      @ppt_obj = PiedraPapelTijeras.new(nil, nil, nil, "tijeras", "papel")
    end
    
    def teardown
@@ -17,7 +17,7 @@ class TestPiedraPapelTijeras < Test::Unit::TestCase
       30.times do
          score.push (@ppt_obj.jugar)
       end
-      assert(score.uniq.length >= 3, "score.uniq.length = #{score.uniq.length} score.length = #{score.length}") # Comprueba que la longitud del score tiene los 3 posibles resultados
+      assert(score.uniq.length >= @ppt_obj.tiradas.length, "score.uniq.length = #{score.uniq.length} score.length = #{score.length}") # Comprueba que la longitud del score tiene los 3 posibles resultados
    end
    
    def test_wrong_play
@@ -30,7 +30,7 @@ class TestPiedraPapelTijeras < Test::Unit::TestCase
       20.times do
          answers.push @ppt_obj.jugar
       end
-      assert(answers.uniq.length >= 3, "answers.uniq.length = #{answers.uniq.length} answers.length = #{answers.length}")
+      assert(answers.uniq.length >= @ppt_obj.tiradas.length, "answers.uniq.length = #{answers.uniq.length} answers.length = #{answers.length}")
    end
 
 end
