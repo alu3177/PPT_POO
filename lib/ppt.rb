@@ -41,18 +41,28 @@ class PiedraPapelTijeras
         # VERBOSE
         machine = `hostname`.strip
         if (@verbose == true)
-            puts "        ## JUGADOR ##                         ## #{$machine} ##"
+            puts "        ## JUGADOR ##                         ## #{machine} ##"
             puts "           #{@humano.to_s.capitalize}               VS               #{@maquina.to_s.capitalize}"
             puts ""
         end
-               
-        case @humano
-            when @maquina
+
+        if @ganadoras[@maquina].kind_of? Array
+            if (@humano == @maquina)
                 return @resultados[2]
-            when @ganadoras[@maquina]
+            elsif (@ganadoras[@maquina].member? @humano)
                 return @resultados[1]
             else
                 return @resultados[0]
+            end
+        elsif @ganadoras[@maquina].kind_of? Symbol
+            case @humano
+                when @maquina
+                    return @resultados[2]
+                when @ganadoras[@maquina]
+                    return @resultados[1]
+                else
+                    return @resultados[0]
+            end
         end
     end
 end

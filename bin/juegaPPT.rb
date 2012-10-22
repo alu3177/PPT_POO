@@ -1,10 +1,12 @@
 require "ppt.rb"
 
-tiradas = [:piedra, :papel, :tijeras]
+tiradas = [:piedra, :papel, :tijeras, :lagarto, :spock]
 ganadoras = {
-      :piedra => :tijeras,
-      :papel => :piedra,
-      :tijeras => :papel
+      :piedra =>  [:tijeras, :lagarto],
+      :papel =>   [:piedra, :spock],
+      :tijeras => [:papel, :lagarto],
+      :lagarto => [:papel, :spock],
+      :spock =>   [:piedra, :tijeras]
      } 
 resultados = [:gane, :perdi, :empate]
 
@@ -20,5 +22,5 @@ else
     puts ARG[0]
 end
 
-ppt = PiedraPapelTijeras.new("", "", "", jugada, "", $verbose)
+ppt = PiedraPapelTijeras.new(tiradas, ganadoras, nil, jugada, "", $verbose)
 puts ppt.jugar
